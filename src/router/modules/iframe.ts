@@ -1,4 +1,4 @@
-import Layout from '@/layouts/index.vue';
+/*import Layout from '@/layouts/index.vue';
 
 const IFrame = () => import('@/layouts/components/FrameBlank.vue');
 
@@ -45,3 +45,4 @@ export default [
     ],
   },
 ];
+*/

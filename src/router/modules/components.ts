@@ -3,7 +3,8 @@ import ListIcon from '@/assets/assets-slide-list.svg';
 import FormIcon from '@/assets/assets-slide-form.svg';
 import DetailIcon from '@/assets/assets-slide-detail.svg';
 
-export default [{
+export default [
+  /*{
 	"path": "/list",
 	"name": "list",
 	"component": Layout,
@@ -45,57 +46,63 @@ export default [{
 		}
 	}]
 },
-{
-	"path": "/form",
-	"name": "form",
-	"component": Layout,
-	"redirect": "/form/base",
-	"meta": {
-		"title": "表单页",
-		"icon": FormIcon
-	},
-	"children": [{
-		"path": "base",
-		"name": "FormBase",
-		"component": ()=>import("@/pages/form/base/index.vue"),
-		"meta": {
-			"title": "基础表单页"
-		}
-	},
-	{
-		"path": "step",
-		"name": "FormStep",
-		"component": ()=>import("@/pages/form/step/index.vue"),
-		"meta": {
-			"title": "分步表单页"
-		}
-	}]
-},
-{
-	"path": "/mypages",
-	"name": "mypages",
-	"component": Layout,
-	"redirect": "/mypages/base",
-	"meta": {
-		"title": "我的页面",
-		"icon": FormIcon
-	},
-	"children": [{
-		"path": "base",
-		"name": "mypagesBase",
-		"component": ()=>import("@/pages/mypages/base/index.vue"),
-		"meta": {
-			"title": "我的基础页"
-		}
-	},{
-		"path" : "form",
-		"name": "mypagesForm",
-		"component": ()=>import("@/pages/mypages/form/index.vue"),
-		"meta": {
-			"title": "我的表单页面"
-		}
-	}]
-},
+  {
+    path: '/form',
+    name: 'form',
+    component: Layout,
+    redirect: '/form/base',
+    meta: {
+      title: '表单页',
+      icon: FormIcon,
+    },
+    children: [
+      {
+        path: 'base',
+        name: 'FormBase',
+        component: () => import('@/pages/form/base/index.vue'),
+        meta: {
+          title: '基础表单页',
+        },
+      },
+      {
+        path: 'step',
+        name: 'FormStep',
+        component: () => import('@/pages/form/step/index.vue'),
+        meta: {
+          title: '分步表单页',
+        },
+      },
+    ],
+  },*/
+  {
+    path: '/mypages',
+    name: 'mypages',
+    component: Layout,
+    redirect: '/mypages/base',
+    meta: {
+      title: '服务调用',
+      icon: FormIcon,
+    },
+    children: [
+      {
+        path: 'base',
+        name: 'mypagesBase',
+        component: () => import('@/pages/mypages/base/index.vue'),
+        meta: {
+          title: '我的基础页',
+        },
+      },
+      {
+        path: 'form',
+        name: 'mypagesForm',
+        component: () => import('@/pages/mypages/form/index.vue'),
+        meta: {
+          title: '我的表单页面',
+        },
+      },
+    ],
+  },
+  /*,
 {
 	"path": "/detail",
 	"name": "detail",
@@ -137,7 +144,8 @@ export default [{
 			"title": "二级详情页"
 		}
 	}]
-},
+}
+,
 {
 	"path": "/result",
 	"name": "result",
@@ -211,4 +219,5 @@ export default [{
 			"title": "系统维护页"
 		}
 	}]
-}]
+}*/
+];
