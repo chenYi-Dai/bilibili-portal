@@ -15,6 +15,16 @@ export const CONTRACT_STATUS_OPTIONS = [
   { value: CONTRACT_STATUS.FINISH, label: '已完成' },
 ];
 
+export const INTERFACE_STATUS = {
+  INTERFACE_NORMAL:1,
+  INTERFACE_DISABLE:2
+};
+
+export const CONTRACT_INTERFACE_STATUS_OPTIONS = [
+  { value: INTERFACE_STATUS.INTERFACE_NORMAL, label: '正常' },
+  { value: INTERFACE_STATUS.INTERFACE_DISABLE, label: '禁用' },
+];
+
 // 合同类型枚举
 export const CONTRACT_TYPES = {
   MAIN: 0,

@@ -17,8 +17,9 @@ export interface RequestOptions {
   };
 }
 
+//此处表明接收返回结果的结构
 export interface Result<T = any> {
-  code: number;
+  //code: number;
   data: T;
 }
 

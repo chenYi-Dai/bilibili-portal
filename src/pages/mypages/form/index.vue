@@ -13,23 +13,23 @@
         <t-col :span="10">
           <t-row :gutter="[16, 24]">
             <t-col :span="4">
-              <t-form-item label="合同名称" name="name">
+              <t-form-item label="系统名称" name="callName">
                 <t-input
-                  v-model="formData.name"
+                  v-model="formData.callName"
                   class="form-item-content"
                   type="search"
-                  placeholder="请输入合同名称"
+                  placeholder="请输入调用系统名称"
                   :style="{ minWidth: '134px' }"
                 />
               </t-form-item>
             </t-col>
             <t-col :span="4">
-              <t-form-item label="合同状态" name="status">
+              <t-form-item label="状态" name="status">
                 <t-select
                   v-model="formData.status"
                   class="form-item-content"
-                  :options="CONTRACT_STATUS_OPTIONS"
-                  placeholder="请选择合同状态"
+                  :options="CONTRACT_INTERFACE_STATUS_OPTIONS"
+                  placeholder="请选择状态"
                 />
               </t-form-item>
             </t-col>
@@ -40,17 +40,6 @@
                   class="form-item-content"
                   placeholder="请输入合同编号"
                   :style="{ minWidth: '134px' }"
-                />
-              </t-form-item>
-            </t-col>
-            <t-col :span="4">
-              <t-form-item label="合同类型" name="type">
-                <t-select
-                  v-model="formData.type"
-                  style="display: inline-block"
-                  class="form-item-content"
-                  :options="CONTRACT_TYPE_OPTIONS"
-                  placeholder="请选择合同类型"
                 />
               </t-form-item>
             </t-col>
@@ -78,11 +67,8 @@
         @change="rehandleChange"
       >
         <template #status="{ row }">
-          <t-tag v-if="row.status === CONTRACT_STATUS.FAIL" theme="danger" variant="light"> 审核失败 </t-tag>
-          <t-tag v-if="row.status === CONTRACT_STATUS.AUDIT_PENDING" theme="warning" variant="light"> 待审核 </t-tag>
-          <t-tag v-if="row.status === CONTRACT_STATUS.EXEC_PENDING" theme="warning" variant="light"> 待履行 </t-tag>
-          <t-tag v-if="row.status === CONTRACT_STATUS.EXECUTING" theme="success" variant="light"> 履行中 </t-tag>
-          <t-tag v-if="row.status === CONTRACT_STATUS.FINISH" theme="success" variant="light"> 已完成 </t-tag>
+          <t-tag v-if="row.status === INTERFACE_STATUS.INTERFACE_NORMAL" theme="success" variant="light"> 正常 </t-tag>
+          <t-tag v-if="row.status === INTERFACE_STATUS.INTERFACE_DISABLE" theme="danger" variant="light"> 禁用 </t-tag>
         </template>
         <template #contractType="{ row }">
           <p v-if="row.contractType === CONTRACT_TYPES.MAIN">审核失败</p>
@@ -123,6 +109,7 @@ import { prefix } from '@/config/global';
 import {
   CONTRACT_STATUS,
   CONTRACT_STATUS_OPTIONS,
+  CONTRACT_INTERFACE_STATUS_OPTIONS,
   CONTRACT_TYPES,
   CONTRACT_TYPE_OPTIONS,
   CONTRACT_PAYMENT_TYPES,
@@ -132,45 +119,38 @@ const store = useSettingStore();
 
 const COLUMNS: PrimaryTableCol<TableRowData>[] = [
   {
-    title: '合同名称',
+    title: '调用系统ID',
     fixed: 'left',
     width: 200,
     ellipsis: true,
     align: 'left',
-    colKey: 'name',
+    colKey: 'callSystemId',
   },
-  { title: '合同状态', colKey: 'status', width: 200 },
   {
-    title: '合同编号',
+    title: '调用系统名称',
     width: 200,
     ellipsis: true,
-    colKey: 'no',
+    colKey: 'callName',
   },
   {
-    title: '合同类型',
+    title: '算法版本',
     width: 200,
     ellipsis: true,
-    colKey: 'contractType',
+    colKey: 'keyVerSign',
   },
+  { title: '状态', colKey: 'status', width: 200 },
   {
-    title: '合同收付类型',
+    title: '创建时间',
     width: 200,
     ellipsis: true,
-    colKey: 'paymentType',
+    colKey: 'createTime',
   },
   {
-    title: '合同金额 (元)',
+    title: '接口授权开关',
     width: 200,
     ellipsis: true,
-    colKey: 'amount',
-  },
-  {
-    align: 'left',
-    fixed: 'right',
-    width: 200,
-    colKey: 'op',
-    title: '操作',
-  },
+    colKey: 'authInterfaceFlag',
+  }
 ];
 
 const searchForm = {
@@ -199,7 +179,9 @@ const fetchData = async () => {
   dataLoading.value = true;
   try {
     const { list } = await getList();
+    
     data.value = list;
+    debugger
     pagination.value = {
       ...pagination.value,
       total: list.length,

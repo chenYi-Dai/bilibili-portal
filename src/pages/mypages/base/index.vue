@@ -93,7 +93,6 @@ const columns = [
     colKey: 'email',
     // render 即可渲染表头，也可以渲染单元格。但 cell 只能渲染单元格，title 只能渲染表头
     render(h, context) {
-      console.log(111 + context)
       const { type, row, col } = context;
       if (type === 'title') return '邮箱地址';
       return <div>{row.detail[col.colKey]}</div>;

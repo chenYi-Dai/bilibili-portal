@@ -27,7 +27,7 @@ const defaultRouterList: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    redirect: '/mypages/form',
+    redirect: '/mypages/base',
   },
   {
     path: '/:w+',

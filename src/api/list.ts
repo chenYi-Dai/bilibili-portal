@@ -2,7 +2,7 @@ import { request } from '@/utils/request';
 import type { CardListResult, ListResult } from '@/api/model/listModel';
 
 const Api = {
-  BaseList: '/get-list',
+  BaseList: '/list',
   CardList: '/get-card-list',
 };
 
